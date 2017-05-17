@@ -4,14 +4,13 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<meta name="date" content="2017-03-31" />
 
 <title>Tibbles</title>
 
@@ -68,7 +67,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 
 <h1 class="title toc-ignore">Tibbles</h1>
-<h4 class="date"><em>2017-03-31</em></h4>
 
 
 
@@ -79,7 +77,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li><p>It never changes an input’s type (i.e., no more <code>stringsAsFactors = FALSE</code>!).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tibble</span>(<span class="dt">x =</span> letters)
-<span class="co">#&gt; # A tibble: 26 × 1</span>
+<span class="co">#&gt; # A tibble: 26 x 1</span>
 <span class="co">#&gt;       x</span>
 <span class="co">#&gt;   &lt;chr&gt;</span>
 <span class="co">#&gt; 1     a</span>
@@ -89,7 +87,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="co">#&gt; # ... with 22 more rows</span></code></pre></div>
 <p>This makes it easier to use with list-columns:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="dv">1</span>:<span class="dv">3</span>, <span class="dt">y =</span> <span class="kw">list</span>(<span class="dv">1</span>:<span class="dv">5</span>, <span class="dv">1</span>:<span class="dv">10</span>, <span class="dv">1</span>:<span class="dv">20</span>))
-<span class="co">#&gt; # A tibble: 3 × 2</span>
+<span class="co">#&gt; # A tibble: 3 x 2</span>
 <span class="co">#&gt;       x          y</span>
 <span class="co">#&gt;   &lt;int&gt;     &lt;list&gt;</span>
 <span class="co">#&gt; 1     1  &lt;int [5]&gt;</span>
@@ -103,7 +101,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="co">#&gt; [1] &quot;crazy name&quot;</span></code></pre></div></li>
 <li><p>It evaluates its arguments lazily and sequentially:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="dv">1</span>:<span class="dv">5</span>, <span class="dt">y =</span> x ^<span class="st"> </span><span class="dv">2</span>)
-<span class="co">#&gt; # A tibble: 5 × 2</span>
+<span class="co">#&gt; # A tibble: 5 x 2</span>
 <span class="co">#&gt;       x     y</span>
 <span class="co">#&gt;   &lt;int&gt; &lt;dbl&gt;</span>
 <span class="co">#&gt; 1     1     1</span>
@@ -119,20 +117,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2>Coercion</h2>
 <p>To complement <code>tibble()</code>, tibble provides <code>as_tibble()</code> to coerce objects into tibbles. Generally, <code>as_tibble()</code> methods are much simpler than <code>as.data.frame()</code> methods, and in fact, it’s precisely what <code>as.data.frame()</code> does, but it’s similar to <code>do.call(cbind, lapply(x, data.frame))</code> - i.e. it coerces each component to a data frame and then <code>cbinds()</code> them all together.</p>
 <p><code>as_tibble()</code> has been written with an eye for performance:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">l &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">26</span>, <span class="kw">sample</span>(<span class="dv">100</span>), <span class="dt">simplify =</span> <span class="ot">FALSE</span>)
-<span class="kw">names</span>(l) &lt;-<span class="st"> </span>letters
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (<span class="kw">requireNamespace</span>(<span class="st">&quot;microbenchmark&quot;</span>, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)) {
+  l &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">26</span>, <span class="kw">sample</span>(<span class="dv">100</span>), <span class="dt">simplify =</span> <span class="ot">FALSE</span>)
+  <span class="kw">names</span>(l) &lt;-<span class="st"> </span>letters
 
-microbenchmark::<span class="kw">microbenchmark</span>(
-  <span class="kw">as_tibble</span>(l),
-  <span class="kw">as.data.frame</span>(l)
-)
-<span class="co">#&gt; Unit: microseconds</span>
-<span class="co">#&gt;              expr     min        lq      mean    median       uq      max</span>
-<span class="co">#&gt;      as_tibble(l) 200.152  212.2545  252.9726  220.9705  264.055 2013.606</span>
-<span class="co">#&gt;  as.data.frame(l) 998.335 1024.8965 1158.1838 1048.1675 1220.830 3200.910</span>
-<span class="co">#&gt;  neval cld</span>
-<span class="co">#&gt;    100  a </span>
-<span class="co">#&gt;    100   b</span></code></pre></div>
+  microbenchmark::<span class="kw">microbenchmark</span>(
+    <span class="kw">as_tibble</span>(l),
+    <span class="kw">as.data.frame</span>(l)
+  )
+}
+<span class="co">#&gt; Loading required namespace: microbenchmark</span></code></pre></div>
 <p>The speed of <code>as.data.frame()</code> is not usually a bottleneck when used interactively, but can be a problem when combining thousands of messy inputs into one tidy data frame.</p>
 </div>
 <div id="tibbles-vs-data-frames" class="section level2">
@@ -142,7 +136,7 @@ microbenchmark::<span class="kw">microbenchmark</span>(
 <h3>Printing</h3>
 <p>When you print a tibble, it only shows the first ten rows and all the columns that fit on one screen. It also prints an abbreviated description of the column type:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="dv">1</span>:<span class="dv">1000</span>)
-<span class="co">#&gt; # A tibble: 1,000 × 1</span>
+<span class="co">#&gt; # A tibble: 1,000 x 1</span>
 <span class="co">#&gt;       x</span>
 <span class="co">#&gt;   &lt;int&gt;</span>
 <span class="co">#&gt; 1     1</span>
@@ -184,7 +178,7 @@ df2 &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt
 df2$a
 <span class="co">#&gt; Warning: Unknown or uninitialised column: 'a'.</span>
 <span class="co">#&gt; NULL</span></code></pre></div>
-<p>Also, tibbles ignore the <code>drop</code> argument.</p>
+<p>tibbles also ignore the <code>drop</code> argument.</p>
 </div>
 </div>
 
@@ -195,7 +189,7 @@ df2$a
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
