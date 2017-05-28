@@ -1,3 +1,14 @@
+# tibble 1.3.3 (2017-05-27)
+
+## Bug fixes
+
+- Added `format()` and `print()` methods for both `tbl` and `tbl_df` classes, to protect against malformed tibbles that inherit from `"tbl_df"` but not `"tbl"`, as created e.g. by `ungroup()` in dplyr 0.5.0 and earlier (#256, #263).
+- The column width for non-syntactic columns is computed correctly again (#258).
+- Printing a tibble doesn't apply quote escaping to list columns.
+- Fix error in `tidy_names(syntactic = TRUE, quiet = FALSE)` if not all names are fixed (#260, @imanuelcostigan).
+- Remove unused import declaration for assertthat.
+
+
 # tibble 1.3.1 (2017-05-16)
 
 ## Bug fixes
