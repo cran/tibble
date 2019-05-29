@@ -1,7 +1,7 @@
-5a2960b08b46ac99a3cddbc4ee823649 *DESCRIPTION
+67b69be3d38091b55e73616e5bd6b148 *DESCRIPTION
 4ac396cdf32c44b3d07b7d6c9fd388d0 *LICENSE
 1143361e47602d724bb722696a502530 *NAMESPACE
-a5f9eac81afaa1dfced699d1ae30242c *NEWS.md
+a3c77de1cf290287f4236c66d2cf954e *NEWS.md
 9268baf03874a8501ccad6d15e147e64 *R/add.R
 139376fe38436fe5398e58f760624dcc *R/as_tibble.R
 dcb10c6d93dad98f2307b52d9bb23130 *R/check-names.R
@@ -33,14 +33,14 @@ b9a720234e0f057cc26e56f99cb1b33b *R/utils.r
 a7d2e7cc5182b83750c11175747d6a31 *R/wrap.R
 90dfff18a062646cd6b4354fade7fa71 *R/zzz.R
 fa3710b7a73bd48e44831db69108431a *README.md
-15bc2bea4e9cccbdf18376134c9d5a2f *build/tibble.pdf
-6a85924ec866715ebf18930bd7e1eeb9 *build/vignette.rds
+4f0f7aa37d0e927a86302a526f37e14f *build/tibble.pdf
+e1c4d24b4d6ba763415aefd44b5f7a4e *build/vignette.rds
 5921387468f281e14f824b50ae7a23d8 *inst/doc/extending.R
 ff797036222f7e131519364c6ee04c5b *inst/doc/extending.Rmd
-3f37bb322ece19f4a4428266df437afa *inst/doc/extending.html
+924e17248d4abc31b27210c1d3bb4ad3 *inst/doc/extending.html
 4bc8633ca26749dcd5901440c21a30dd *inst/doc/tibble.R
 3c4a4bf9e7fa62ca1397943b9daa91d3 *inst/doc/tibble.Rmd
-e8522a90a0e2e9e917fd37d1141dc6cc *inst/doc/tibble.html
+a73e4289c8bf117dbe1a7a7a9d38ec9c *inst/doc/tibble.html
 b9e1a157cf9178d66a34270ee1c008f4 *man/add_column.Rd
 b846dc00b6993a1f379774471c2409c0 *man/add_row.Rd
 278af7ade4748d46be721236de4305f0 *man/as_tibble.Rd
@@ -98,7 +98,7 @@ ea747fa082b6f816f6f12236e405f18f *tests/testthat/output/glimpse/iris-70.txt
 582025040c8ab554f8d502bc631b75d3 *tests/testthat/output/glimpse/iris-nested-tbl-70.txt
 8ce8a71fc1cc636d140c85264e7cf08f *tests/testthat/output/glimpse/mtcars-70.txt
 7abb3cfcde3d7fa037ea8bbbcc142272 *tests/testthat/output/glimpse/non-syntactic.txt
-05797cd8e9f902232d2599f6bbac4961 *tests/testthat/output/trunc_mat/POSIXlt-8-60.txt
+c11caac141889d6ad0902749aa4ac403 *tests/testthat/output/trunc_mat/POSIXlt-8-60.txt
 f117a40efd5eac11a6989f0f2563cab6 *tests/testthat/output/trunc_mat/all--30.txt
 896d242bb8a12144917f2421cbd76f3d *tests/testthat/output/trunc_mat/all--300.txt
 ef2aeb149a398f64377aca226381ac70 *tests/testthat/output/trunc_mat/all-1-30-0.txt
@@ -123,7 +123,7 @@ fe211bb3806e827ff4a7a42f10dee1a9 *tests/testthat/output/trunc_mat/zero-cols_unk-
 b4557fe57c9221fe381939fc6cfb570d *tests/testthat/output/trunc_mat/zero_cols-5-30.txt
 f929ae01b6c332dea1505ba4d812ab64 *tests/testthat/output/trunc_mat/zero_rows--30.txt
 5578aeacb88ef9a148d2ec64261ab663 *tests/testthat/test-add.R
-c12a75079d8349291910b5eaa09e6555 *tests/testthat/test-data-frame.R
+3a86b73121c86a54aa64b055401704be *tests/testthat/test-data-frame.R
 4d2ab552c3b32fe66d307bc3e0ed0cea *tests/testthat/test-enframe.R
 dd03a294d66621f19a36264d2884e2d2 *tests/testthat/test-glimpse.R
 65296c0e4c36d4d8e94c3516086b5ed1 *tests/testthat/test-has-name.R
@@ -136,7 +136,7 @@ bb2c8287e6cbb407bf13a66fe8db499f *tests/testthat/test-name-repair.R
 4cbf98f461359d8e6849e2ce533d7273 *tests/testthat/test-rownames.R
 05e02b762e4ae5f71f13ee64d4cd5845 *tests/testthat/test-string-to-indices.R
 fda06166b034b297d550d070432b22cf *tests/testthat/test-syntactic-names.R
-63036850f08b20617f7f9261194a4681 *tests/testthat/test-tbl-df.R
+2c6b8b2dcda6ab9c9a284e185ddca5bc *tests/testthat/test-tbl-df.R
 be9d5b4ce2b894b94330f0ecc6849b60 *tests/testthat/test-tidy_names.R
 a808c69fc0d0c1da6d1aa9f4d97661b0 *tests/testthat/test-tribble.R
 1f18d8b75a38358ab615522921c71972 *tests/testthat/test-trunc-mat.R
