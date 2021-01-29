@@ -1,7 +1,8 @@
 ## ---- include = FALSE---------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  error = (Sys.getenv("IN_PKGDOWN") == "")
 )
 
 ## ----setup--------------------------------------------------------------------
