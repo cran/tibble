@@ -11,6 +11,8 @@
 #' Printing can be tweaked for a one-off call by calling `print()` explicitly
 #' and setting arguments like `n` and `width`. More persistent control is
 #' available by setting the options described below.
+#' See also `vignette("digits", package = "pillar")` for a comparison to base options,
+#' and [num()] and [char()] for creating columns with custom formatting options.
 #'
 #' As of tibble 3.1.0, printing is handled entirely by the \pkg{pillar} package.
 #' If you implement a package that extend tibble,
@@ -20,10 +22,7 @@
 #' @inheritSection pillar::`pillar-package` Package options
 #' @section Package options:
 #'
-#' The following options are used by the tibble and pillar packages
-#' to format and print `tbl_df` objects.
-#' Used by the formatting workhorse `trunc_mat()` and, therefore,
-#' indirectly, by `print.tbl()`.
+#' The following options control printing of `tbl` and `tbl_df` objects:
 #'
 #' * `tibble.print_max`: Row number threshold: Maximum number of rows printed.
 #'   Set to `Inf` to always print all rows.  Default: 20.
@@ -32,6 +31,9 @@
 #' * `tibble.width`: Output width. Default: `NULL` (use `width` option).
 #' * `tibble.max_extra_cols`: Number of extra columns printed in reduced form.
 #'   Default: 100.
+#'
+#' The output uses color and highlighting according to the `"cli.num_colors"` option.
+#' Set it to `1` to suppress colored and highlighted output.
 #'
 #' @param x Object to format or print.
 #' @param ... Other arguments passed on to individual methods.

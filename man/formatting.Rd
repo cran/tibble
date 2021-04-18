@@ -43,6 +43,8 @@ whether a variable is, e.g., \verb{<chr>} or \verb{<fct>} (character versus fact
 Printing can be tweaked for a one-off call by calling \code{print()} explicitly
 and setting arguments like \code{n} and \code{width}. More persistent control is
 available by setting the options described below.
+See also \code{vignette("digits", package = "pillar")} for a comparison to base options,
+and \code{\link[=num]{num()}} and \code{\link[=char]{char()}} for creating columns with custom formatting options.
 
 As of tibble 3.1.0, printing is handled entirely by the \pkg{pillar} package.
 If you implement a package that extend tibble,
@@ -52,10 +54,7 @@ See \code{vignette("extending", package = "pillar")} for details.
 \section{Package options}{
 
 
-The following options are used by the tibble and pillar packages
-to format and print \code{tbl_df} objects.
-Used by the formatting workhorse \code{trunc_mat()} and, therefore,
-indirectly, by \code{print.tbl()}.
+The following options control printing of \code{tbl} and \code{tbl_df} objects:
 \itemize{
 \item \code{tibble.print_max}: Row number threshold: Maximum number of rows printed.
 Set to \code{Inf} to always print all rows.  Default: 20.
@@ -65,6 +64,9 @@ exceeded. Default: 10.
 \item \code{tibble.max_extra_cols}: Number of extra columns printed in reduced form.
 Default: 100.
 }
+
+The output uses color and highlighting according to the \code{"cli.num_colors"} option.
+Set it to \code{1} to suppress colored and highlighted output.
 
 
 
@@ -88,6 +90,8 @@ titles.
 display character columns, default: \code{0}.  Character columns may be
 truncated up to that width to save horizontal space. Set to \code{Inf} to
 turn off truncation of character columns.
+\item \code{pillar.max_dec_width}: The maximum allowed width for decimal notation,
+default 13.
 }
 
 }
