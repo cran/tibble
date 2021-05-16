@@ -207,8 +207,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="coercion" class="section level2">
 <h2>Coercion</h2>
-<p>To complement <code>tibble()</code>, tibble provides <code>as_tibble()</code> to coerce objects into tibbles. Generally, <code>as_tibble()</code> methods are much simpler than <code>as.data.frame()</code> methods, and in fact, it’s precisely what <code>as.data.frame()</code> does, but it’s similar to <code>do.call(cbind, lapply(x, data.frame))</code> - i.e. it coerces each component to a data frame and then uses <code>cbind()</code> to bind them all together.</p>
-<p><code>as_tibble()</code> has been written with an eye for performance:</p>
+<p>To complement <code>tibble()</code>, tibble provides <code>as_tibble()</code> to coerce objects into tibbles. Generally, <code>as_tibble()</code> methods are much simpler than <code>as.data.frame()</code> methods. The method for lists has been written with an eye for performance:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">26</span>, <span class="fu">sample</span>(<span class="dv">100</span>), <span class="at">simplify =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(l) <span class="ot">&lt;-</span> letters</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -260,6 +259,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><code>options(tibble.print_max = n, tibble.print_min = m)</code>: if there are more than <code>n</code> rows, print only the first <code>m</code> rows. Use <code>options(tibble.print_max = Inf)</code> to always show all rows.</p></li>
 <li><p><code>options(tibble.width = Inf)</code> will always print all columns, regardless of the width of the screen.</p></li>
 </ul>
+<p>See <code>?&quot;tibble-package&quot;</code> for the available options, and <code>vignette(&quot;types&quot;)</code> for an overview of the type abbreviations.</p>
 </div>
 <div id="subsetting" class="section level3">
 <h3>Subsetting</h3>
@@ -316,7 +316,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre class="sourceCode"><code class="sourceCode">#&gt; NULL
 </code></pre>
 </div>
-<p>As of version 1.4.1, tibbles no longer ignore the <code>drop</code> argument:</p>
+<p>However, tibbles respect the <code>drop</code> argument if it is provided:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)[, <span class="st">&quot;a&quot;</span>, drop <span class="ot">=</span> <span class="cn">TRUE</span>]</span></code></pre></div>
 <div class="sourceCode">
 <pre class="sourceCode"><code class="sourceCode">#&gt; [1] 1 2 3
@@ -356,10 +356,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre class="sourceCode"><code class="sourceCode">#&gt; [1] &quot;1&quot;
 </code></pre>
 </div>
+<p>See <code>vignette(&quot;invariants&quot;)</code> for a detailed comparison between tibbles and data frames.</p>
 </div>
 <div id="recycling" class="section level3">
 <h3>Recycling</h3>
-<p>When constructing a tibble, only values of length 1 are recycled. The first column with length different to one determines the number of rows in the tibble, conflicts lead to an error. This also extends to tibbles with <em>zero</em> rows, which is sometimes important for programming:</p>
+<p>When constructing a tibble, only values of length 1 are recycled. The first column with length different to one determines the number of rows in the tibble, conflicts lead to an error:</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">a =</span> <span class="dv">1</span>, <span class="at">b =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
 <div class="sourceCode">
 <pre class="sourceCode"><code class="sourceCode">#&gt; <span style="color: #555555;"># A tibble: 3 x 2</span><span>
@@ -388,6 +389,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #&gt; </span><span style="color: #0000BB;">ℹ</span><span style="color: #BB0000;"> Only values of size one are recycled.
 </span></code></pre>
 </div>
+<p>This also extends to tibbles with <em>zero</em> rows, which is sometimes important for programming:</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">a =</span> <span class="dv">1</span>, <span class="at">b =</span> <span class="fu">integer</span>())</span></code></pre></div>
 <div class="sourceCode">
 <pre class="sourceCode"><code class="sourceCode">#&gt; <span style="color: #555555;"># A tibble: 0 x 2</span><span>
@@ -403,7 +405,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="arithmetic-operations" class="section level3">
 <h3>Arithmetic operations</h3>
-<p>Unlike data frames, tibbles don’t support arithmetic operations on all columns. The result is silently coerced to a data frame.</p>
+<p>Unlike data frames, tibbles don’t support arithmetic operations on all columns. The result is silently coerced to a data frame. Do not rely on this behavior, it may become an error in a forthcoming version.</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">b =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>)</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>tbl <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div>
 <div class="sourceCode">

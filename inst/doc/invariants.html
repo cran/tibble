@@ -1258,7 +1258,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with_df</span>(df[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>))</span></code></pre></div>
 <div class="warning">
 <pre><code>#&gt; Warning in `[&lt;-.data.frame`(`*tmp*`,
-#&gt; 1:2, value = list(0, 0, 0)): provided 3
+#&gt; 1:2,
+#&gt; value = list(0, 0, 0)): provided 3
 #&gt; variables to replace 2 variables</code></pre>
 </div>
 <pre><code>#&gt;   n c         li
@@ -1732,29 +1733,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td>
 <div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with_df</span>(df[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> wt, <span class="at">data =</span> mtcars))</span></code></pre></div>
 <div class="warning">
-<pre><code>#&gt; Warning in `[&lt;-.data.frame`(`*tmp*`,
-#&gt; 1, value = structure(list(coefficients
+<pre><code>#&gt; Warning in `[&lt;-.data.frame`(`*tmp*`, 1,
+#&gt; value = structure(list(coefficients
 #&gt; = c(`(Intercept)` = 37.285126167342, :
 #&gt; replacement element 2 has 32 rows to
 #&gt; replace 4 rows</code></pre>
 </div>
 <div class="warning">
-<pre><code>#&gt; Warning in `[&lt;-.data.frame`(`*tmp*`,
-#&gt; 1, value = structure(list(coefficients
+<pre><code>#&gt; Warning in `[&lt;-.data.frame`(`*tmp*`, 1,
+#&gt; value = structure(list(coefficients
 #&gt; = c(`(Intercept)` = 37.285126167342, :
 #&gt; replacement element 3 has 32 rows to
 #&gt; replace 4 rows</code></pre>
 </div>
 <div class="warning">
-<pre><code>#&gt; Warning in `[&lt;-.data.frame`(`*tmp*`,
-#&gt; 1, value = structure(list(coefficients
+<pre><code>#&gt; Warning in `[&lt;-.data.frame`(`*tmp*`, 1,
+#&gt; value = structure(list(coefficients
 #&gt; = c(`(Intercept)` = 37.285126167342, :
 #&gt; replacement element 5 has 32 rows to
 #&gt; replace 4 rows</code></pre>
 </div>
 <div class="warning">
-<pre><code>#&gt; Warning in `[&lt;-.data.frame`(`*tmp*`,
-#&gt; 1, value = structure(list(coefficients
+<pre><code>#&gt; Warning in `[&lt;-.data.frame`(`*tmp*`, 1,
+#&gt; value = structure(list(coefficients
 #&gt; = c(`(Intercept)` = 37.285126167342, :
 #&gt; replacement element 7 has 5 rows to
 #&gt; replace 4 rows</code></pre>
@@ -2038,9 +2039,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with_df</span>(df[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">2</span>] <span class="ot">&lt;-</span> df[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">3</span>])</span></code></pre></div>
 <div class="warning">
 <pre><code>#&gt; Warning in `[&lt;-.data.frame`(`*tmp*`,
-#&gt; 2:3, 2, value = list(9, 10:11)):
-#&gt; provided 2 variables to replace 1
-#&gt; variables</code></pre>
+#&gt; 2:3,
+#&gt; 2, value = list(9, 10:11)): provided 2
+#&gt; variables to replace 1 variables</code></pre>
 </div>
 <pre><code>#&gt;    n c         li
 #&gt; 1  1 e          9
@@ -2063,9 +2064,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with_df</span>(df[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">3</span>] <span class="ot">&lt;-</span> df2[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">1</span>])</span></code></pre></div>
 <div class="warning">
 <pre><code>#&gt; Warning in `[&lt;-.data.frame`(`*tmp*`,
-#&gt; 2:3, 3, value = structure(list(n =
-#&gt; c(1L, : provided 3 variables to replace
-#&gt; 1 variables</code></pre>
+#&gt; 2:3,
+#&gt; 3, value = structure(list(n = c(1L, :
+#&gt; provided 3 variables to replace 1
+#&gt; variables</code></pre>
 </div>
 <pre><code>#&gt;    n c   li
 #&gt; 1  1 e    9
