@@ -559,7 +559,7 @@ with_tbl2(tbl2[2:3, 1] <- tbl2[1:2, 2])
 with_tbl2(tbl2[2:3, 2] <- tbl[1:2, 1])
 
 ## ----bracket-i-j-na-init, dftbl = TRUE----------------------------------------
-with_df({df$x <- NA; df[2:3, "x"] <- 3:2})
+
 with_tbl({tbl$x <- NA; tbl[2:3, "x"] <- 3:2})
 
 with_tbl({tbl$x <- NA_integer_; tbl[2:3, "x"] <- 3:2})
