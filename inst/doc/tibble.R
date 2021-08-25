@@ -1,41 +1,8 @@
-## ---- echo = FALSE, message = FALSE, error = TRUE-----------------------------
-knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+## ----setup, include = FALSE---------------------------------------------------
 library(tibble)
 set.seed(1014)
 
-options(crayon.enabled = TRUE)
-options(pillar.bold = TRUE)
-
-knitr::opts_chunk$set(collapse = TRUE, comment = pillar::style_subtle("#>"))
-
-colourise_chunk <- function(type) {
-  function(x, options) {
-    # lines <- strsplit(x, "\\n")[[1]]
-    lines <- x
-    if (type != "output") {
-      lines <- crayon::red(lines)
-    }
-    paste0(
-      '<div class="sourceCode"><pre class="sourceCode"><code class="sourceCode">',
-      paste0(
-        sgr_to_html(htmltools::htmlEscape(lines)),
-        collapse = "\n"
-      ),
-      "</code></pre></div>"
-    )
-  }
-}
-
-knitr::knit_hooks$set(
-  output = colourise_chunk("output"),
-  message = colourise_chunk("message"),
-  warning = colourise_chunk("warning"),
-  error = colourise_chunk("error")
-)
-
-# Fallback if fansi is missing
-sgr_to_html <- identity
-sgr_to_html <- fansi::sgr_to_html
+tibble:::set_fansi_hooks()
 
 ## -----------------------------------------------------------------------------
 library(tibble)
@@ -69,7 +36,7 @@ tibble(x = 1:5, y = x ^ 2)
 readRDS("timing.rds")
 
 ## -----------------------------------------------------------------------------
-tibble(x = -5:1000)
+tibble(x = -5:100, y = 123.456 * (3 ^ x))
 
 ## -----------------------------------------------------------------------------
 df1 <- data.frame(x = 1:3, y = 3:1)

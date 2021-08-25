@@ -459,6 +459,26 @@
     Error <tibble_error_assign_rows_non_na_only>
       Can't use NA as row index in a tibble for assignment.
     Code
+      # # [<-.tbl_df and logical indexes
+      df <- tibble(x = 1:2, y = x)
+      df[FALSE] <- 1
+      df
+    Output
+      # A tibble: 2 x 2
+            x     y
+        <int> <int>
+      1     1     1
+      2     2     2
+    Code
+      df[, TRUE] <- 2
+      df
+    Output
+      # A tibble: 2 x 2
+            x     y
+        <dbl> <dbl>
+      1     2     2
+      2     2     2
+    Code
       # # [<-.tbl_df throws an error with bad RHS
       df <- tibble(x = 1:2, y = x)
       df[] <- mean
@@ -524,6 +544,78 @@
       Assigned data `1:2` must be compatible with existing data.
       x Existing data has 3 rows.
       x Assigned data has 2 rows.
+      i Only vectors of size 1 are recycled.
+    Code
+      df[1, ] <- list(a = 1:3, b = 1)
+    Error <vctrs_error_incompatible_size>
+      Can't recycle input of size 2 to size 3.
+    Code
+      df[1, ] <- list(a = 1, b = 1:3)
+    Error <vctrs_error_incompatible_size>
+      Can't recycle input of size 2 to size 3.
+    Code
+      df[1:2, ] <- list(a = 1:3, b = 1)
+    Error <vctrs_error_incompatible_size>
+      Can't recycle input of size 2 to size 3.
+    Code
+      df[1:2, ] <- list(a = 1, b = 1:3)
+    Error <vctrs_error_incompatible_size>
+      Can't recycle input of size 2 to size 3.
+    Code
+      df[1, 1:2] <- list(a = 1:3, b = 1)
+    Error <tibble_error_assign_incompatible_size>
+      Assigned data `list(a = 1:3, b = 1)` must be compatible with row subscript `1`.
+      x 1 row must be assigned.
+      x Element 1 of assigned data has 3 rows.
+      i Row updates require a list value. Do you need `list()` or `as.list()`?
+    Code
+      df[1, 1:2] <- list(a = 1, b = 1:3)
+    Error <tibble_error_assign_incompatible_size>
+      Assigned data `list(a = 1, b = 1:3)` must be compatible with row subscript `1`.
+      x 1 row must be assigned.
+      x Element 2 of assigned data has 3 rows.
+      i Row updates require a list value. Do you need `list()` or `as.list()`?
+    Code
+      df[1:2, 1:2] <- list(a = 1:3, b = 1)
+    Error <tibble_error_assign_incompatible_size>
+      Assigned data `list(a = 1:3, b = 1)` must be compatible with row subscript `1:2`.
+      x 2 rows must be assigned.
+      x Element 1 of assigned data has 3 rows.
+      i Only vectors of size 1 are recycled.
+    Code
+      df[1:2, 1:2] <- list(a = 1, b = 1:3)
+    Error <tibble_error_assign_incompatible_size>
+      Assigned data `list(a = 1, b = 1:3)` must be compatible with row subscript `1:2`.
+      x 2 rows must be assigned.
+      x Element 2 of assigned data has 3 rows.
+      i Only vectors of size 1 are recycled.
+    Code
+      df[1, ] <- list(a = 1:3, b = 1, c = 1:3)
+    Error <tibble_error_assign_incompatible_size>
+      Assigned data `list(a = 1:3, b = 1, c = 1:3)` must be compatible with row subscript `1`.
+      x 1 row must be assigned.
+      x Element 1 of assigned data has 3 rows.
+      i Row updates require a list value. Do you need `list()` or `as.list()`?
+    Code
+      df[1, ] <- list(a = 1, b = 1:3, c = 1:3)
+    Error <tibble_error_assign_incompatible_size>
+      Assigned data `list(a = 1, b = 1:3, c = 1:3)` must be compatible with row subscript `1`.
+      x 1 row must be assigned.
+      x Element 2 of assigned data has 3 rows.
+      i Row updates require a list value. Do you need `list()` or `as.list()`?
+    Code
+      df[1:2, ] <- list(a = 1:3, b = 1, c = 1:3)
+    Error <tibble_error_assign_incompatible_size>
+      Assigned data `list(a = 1:3, b = 1, c = 1:3)` must be compatible with row subscript `1:2`.
+      x 2 rows must be assigned.
+      x Element 1 of assigned data has 3 rows.
+      i Only vectors of size 1 are recycled.
+    Code
+      df[1:2, ] <- list(a = 1, b = 1:3, c = 1:3)
+    Error <tibble_error_assign_incompatible_size>
+      Assigned data `list(a = 1, b = 1:3, c = 1:3)` must be compatible with row subscript `1:2`.
+      x 2 rows must be assigned.
+      x Element 2 of assigned data has 3 rows.
       i Only vectors of size 1 are recycled.
     Code
       # # [<-.tbl_df and coercion

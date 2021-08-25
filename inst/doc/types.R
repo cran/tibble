@@ -108,6 +108,6 @@ tbl %>%
   as_tibble() %>% 
   glimpse()
 
-## ----type_sum_default---------------------------------------------------------
+## ----type_sum_default, results = if (Sys.getenv("IN_GALLEY") != "") "hide" else "markup"----
 pillar:::type_sum.default
 

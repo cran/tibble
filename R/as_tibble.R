@@ -209,6 +209,7 @@ as_tibble.matrix <- function(x, ..., validate = NULL, .name_repair = NULL) {
     }
     validate <- NULL
   }
+
   colnames(m) <- names
   as_tibble(m, ..., validate = validate, .name_repair = .name_repair)
 }
@@ -292,7 +293,7 @@ as_tibble_row <- function(x,
   if (is_bare_list(x)) {
     slices <- x
   } else {
-    x <- vec_set_names(x, NULL)
+    x <- vectbl_set_names(x, NULL)
     slices <- lapply(seq_len(vec_size(x)), vec_slice, x = x)
     names(slices) <- names
   }
