@@ -7,7 +7,7 @@ test_that("aborting with class", {
 })
 
 test_that("output test", {
-  skip_if_not_installed("rlang", "0.4.11.9001")
+  skip_if_not_installed("rlang", "0.99.0.9000")
 
   expect_snapshot({
     "# add"
@@ -60,6 +60,7 @@ test_that("output test", {
 
     "# new"
     error_new_tibble_must_be_list()
+    error_new_tibble_nrow_must_be_nonnegative()
 
     "# rownames"
     error_already_has_rownames()
