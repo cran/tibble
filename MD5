@@ -1,7 +1,7 @@
-56357ea7b55be4ee093a67be9cb02ade *DESCRIPTION
+a19fa99d2fd74ad465830a47aa9df590 *DESCRIPTION
 4ac396cdf32c44b3d07b7d6c9fd388d0 *LICENSE
 e189848f4dcd003a82e94fdd27c07789 *NAMESPACE
-e34dbdd5487f3dc8cf1dc8135cd35fbd *NEWS.md
+59ebf23969f8305403c24165b0a2cae7 *NEWS.md
 d54f49d4fe2e2408657ac71a58cb6965 *R/aaa-options.R
 2bbfc52f60b964a99fa77e63c7716992 *R/add.R
 104cafcb39dacbb1a02a085036d7b5c9 *R/as_tibble.R
@@ -30,7 +30,7 @@ c8c7a153de1abac3813b51bfc243f305 *R/names.R
 1e011047625a4d16896df32f847e8c12 *R/str.R
 3adcd03abd68d165dedab8447015a5ce *R/string-to-indices.R
 a3808cf4ece215a323c41211564e0323 *R/sub.R
-1cb6ff89e338c2f43ab4eed07367b25b *R/subassign-backend.R
+e357d42f988636044a64913c58c4590a *R/subassign-backend.R
 fe4aff4351c198c4dbe2d3bfa08d5dd9 *R/subassign.R
 726a3b76be079900ef122e4279d77142 *R/subsetting-matrix.R
 e9724df6767abdd225b1c130ad54cb5c *R/tbl_df.R
@@ -57,7 +57,7 @@ c3748215a65165c388d6ac2b61409ff4 *inst/doc/extending.html
 d290a38dbf8c267a9ecfcc4fd28043c6 *inst/doc/formats.html
 7fae8e7b4739afc74a23cb051d2289d0 *inst/doc/invariants.R
 1d4b307a576275975bd3432aac12c800 *inst/doc/invariants.Rmd
-61e550915977354d9cc979224f13cf06 *inst/doc/invariants.html
+efd892d1bbce87f94a587eeb8fdd385d *inst/doc/invariants.html
 e953b1ce9602e4472e6c3b59a9e1fe4b *inst/doc/numbers.R
 c4f421cb9a1e21f54b835386dc840821 *inst/doc/numbers.Rmd
 87336c471d66689559823a9c101f4913 *inst/doc/numbers.html
@@ -66,7 +66,7 @@ c4f421cb9a1e21f54b835386dc840821 *inst/doc/numbers.Rmd
 0703b269ce9c418ba9e030953e246cd1 *inst/doc/tibble.html
 f77404efdec1daf51b5cf1424486c68a *inst/doc/types.R
 d2b52ddb18629851be651beaba8010e1 *inst/doc/types.Rmd
-6dd21066207b574f7b28eeea767e49e0 *inst/doc/types.html
+8a1eda4ae9c69b5240c707889d2653eb *inst/doc/types.html
 813b9e1fce98f594a612c086d4d35f52 *man/add_column.Rd
 3e5b4ecfe9dc374c481710048d09d7f0 *man/add_row.Rd
 ed461bcf39b87bf81ccf234554f36b85 *man/as_tibble.Rd
