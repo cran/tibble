@@ -188,6 +188,36 @@ test_that("as_tibble() implements universal names", {
   )
 })
 
+test_that("as_tibble() implements unique_quiet", {
+  skip_if_not_installed("vctrs", "0.5.0")
+
+  expect_no_message({
+    invalid_df <- as_tibble(list(3, 4, 5), .name_repair = "unique_quiet")
+  })
+  expect_equal(length(invalid_df), 3)
+  expect_equal(nrow(invalid_df), 1)
+  # it is "quiet" despite `quiet` being FALSE
+  expect_equal(
+    names(invalid_df),
+    vec_as_names(rep("", 3), repair = "unique_quiet", quiet = FALSE)
+  )
+})
+
+test_that("as_tibble() implements universal_quiet", {
+  skip_if_not_installed("vctrs", "0.5.0")
+
+  expect_no_message({
+    invalid_df <- as_tibble(list(3, 4, 5), .name_repair = "universal_quiet")
+  })
+  expect_equal(length(invalid_df), 3)
+  expect_equal(nrow(invalid_df), 1)
+  # it is "quiet" despite `quiet` being FALSE
+  expect_equal(
+    names(invalid_df),
+    vec_as_names(rep("", 3), repair = "universal_quiet", quiet = FALSE)
+  )
+})
+
 
 test_that("as_tibble() implements custom name repair", {
   expect_silent(
@@ -734,4 +764,15 @@ test_that("output test", {
     as_tibble_row(list(a = 1:3))
     as_tibble_row(list(a = 1:3, b = 1:3))
   })
+})
+
+# utilise as.data.frame for extended data.frames
+test_that("as_tibble.data.frame coerces extended data.frames first", {
+  x <- structure(mtcars, extra = "extra", class = c("ext_df_", "data.frame"))
+  y <- as_tibble(head(mtcars))
+  with_mocked_bindings(
+    as.data.frame = function(x, row.names = NULL, optional = FALSE, ...) y,
+    code = expect_identical(as_tibble(x), y),
+    .package = "base"
+  )
 })
